@@ -416,7 +416,7 @@ header h6 + p {
 }
 
 body {
-    margin-top: 80px; /* Ensures content isn't hidden behind the fixed top bar */
+    margin-top: 60px; /* Ensures content isn't hidden behind the fixed top bar */
 }
 
 
