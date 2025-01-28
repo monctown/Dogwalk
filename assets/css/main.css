@@ -451,7 +451,12 @@ header h6 + p {
         /* Center vertically */
              /* Full viewport height to center on the page */
 }
-    
+
+@media (max-width: 1280px) {
+    .logo-container {
+         margin-top: 1em;
+	
+    }
 
 .logo {
     width: 40%;             /* Set the width of the logo */
