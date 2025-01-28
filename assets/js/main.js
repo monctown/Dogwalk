@@ -137,49 +137,41 @@
             $message.classList.remove('visible');
         };
 
-        // Events.
-        $form.addEventListener('submit', function(event) {
+      $form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent form's default behavior
+    event.stopPropagation();
 
-            event.stopPropagation();
-            event.preventDefault();
+    $message._hide(); // Hide any previous message
+    $submit.disabled = true; // Disable the submit button
 
-            // Hide message.
-            $message._hide();
+    var formData = new FormData($form);
 
-            // Disable submit.
-            $submit.disabled = true;
+    // Log form data for debugging
+    console.log('Form data:', Array.from(formData.entries()));
 
-            // Create form data object
-            var formData = new FormData($form);
+    fetch('https://submit.formspark.io/PXKPPs1ZR', { 
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        console.log('Server response:', response);
 
-            // Send form data to Formspark via Fetch API
-            fetch('https://submit.formspark.io/PXKPPs1ZR', {  // Replace with your actual Formspark form endpoint
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Reset form after successful submission.
-                    $form.reset();
+        if (response.ok) {
+            $form.reset(); // Reset the form
+            $message._show('success', 'Thank you for signing up!');
+        } else {
+            $message._show('failure', 'Something went wrong. Please try again.');
+        }
 
-                    // Enable submit button.
-                    $submit.disabled = false;
+        $submit.disabled = false; // Re-enable the submit button
+    })
+    .catch(error => {
+        console.error('Form submission error:', error);
+        $message._show('failure', 'Something went wrong. Please try again.');
+        $submit.disabled = false;
+    });
+});
 
-                    // Show success message.
-                    $message._show('success', 'Thank you for signing up!');
-                } else {
-                    // Show failure message if something goes wrong.
-                    $message._show('failure', 'Something went wrong. Please try again.');
-                }
-            })
-            .catch(error => {
-                // Handle any network errors.
-                 console.error('Form submission error:', error);
-                $message._show('failure', 'Something went wrong. Please try again.');
-                $submit.disabled = false;
-            });
-
-        });
 
     })();
 
