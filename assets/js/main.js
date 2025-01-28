@@ -149,7 +149,7 @@
     // Log form data for debugging
     console.log('Form data:', Array.from(formData.entries()));
 
-    fetch('https://submit.formspark.io/PXKPPs1ZR', { 
+    fetch('https://submit-form.com/T1Gh5vaXT', { 
         method: 'POST',
         body: formData
     })
