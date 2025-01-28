@@ -447,7 +447,7 @@ header h6 + p {
 
 @media (max-width: 1280px) {
     .logo-container {
-         margin-top: 5em;
+         margin-top: 6em;
     }
 }
 	@media (max-width: 736px) {
