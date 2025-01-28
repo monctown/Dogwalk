@@ -149,7 +149,7 @@
     // Log form data for debugging
     console.log('Form data:', Array.from(formData.entries()));
 
-    fetch('https://submit-form.com/T1Gh5vaXT', { 
+    fetch('https://submit-form.com/ztQvCAF8L', { 
         method: 'POST',
         body: formData
     })
