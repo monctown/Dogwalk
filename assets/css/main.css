@@ -449,12 +449,13 @@ header h6 + p {
     .logo-container {
          margin-top: 5em;
     }
-
+}
 	@media (max-width: 736px) {
     .logo-container {
          margin-top: 3em;
     }
-		
+}		
+
 .logo {
     width: 40%;             /* Set the width of the logo */
     height: 40%;    	
