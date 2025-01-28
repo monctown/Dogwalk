@@ -448,13 +448,12 @@ header h6 + p {
     display: flex;            /* Use Flexbox for alignment */
     justify-content: center; 
 	 margin-bottom: 10px;/* Center horizontally */
-        /* Center vertically */
-             /* Full viewport height to center on the page */
+       
 }
 
 @media (max-width: 1280px) {
     .logo-container {
-         margin-top: 1em;
+         margin-top: 3em;
 	
     }
 
