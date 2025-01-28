@@ -174,6 +174,7 @@
             })
             .catch(error => {
                 // Handle any network errors.
+                 console.error('Form submission error:', error);
                 $message._show('failure', 'Something went wrong. Please try again.');
                 $submit.disabled = false;
             });
