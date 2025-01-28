@@ -1,5 +1,4 @@
 (function() {
-
     "use strict";
 
     var $body = document.querySelector('body');
@@ -43,7 +42,6 @@
 
     // Slideshow Background.
     (function() {
-
         // Settings.
         var settings = {
             // Images (in the format of 'url': 'alignment').
@@ -86,7 +84,6 @@
         if ($bgs.length == 1 || !canUse('transition')) return;
 
         window.setInterval(function() {
-
             lastPos = pos;
             pos++;
 
@@ -104,21 +101,16 @@
             }, settings.delay / 2);
 
         }, settings.delay);
-
     })();
 
-    // Signup Form with Formspark integration
+    // Signup Form (Success/Failure Message Handling)
     (function() {
-
-        // Vars.
         var $form = document.querySelector('#signup-form'),
-            $submit = document.querySelector('#signup-form input[type="submit"]'),
             $message;
 
-        // Bail if addEventListener isn't supported.
-        if (!('addEventListener' in $form)) return;
+        if (!$form) return;
 
-        // Message.
+        // Message element.
         $message = document.createElement('span');
         $message.classList.add('message');
         $form.appendChild($message);
@@ -137,42 +129,13 @@
             $message.classList.remove('visible');
         };
 
-      $form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form's default behavior
-    event.stopPropagation();
-
-    $message._hide(); // Hide any previous message
-    $submit.disabled = true; // Disable the submit button
-
-    var formData = new FormData($form);
-
-    // Log form data for debugging
-    console.log('Form data:', Array.from(formData.entries()));
-
-    fetch('https://formsubmit.co/jacquelinedogwalking@gmail.com', { 
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-        console.log('Server response:', response);
-
-        if (response.ok) {
-            $form.reset(); // Reset the form
+        // Check for URL parameters (success/failure message from server response)
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('success')) {
             $message._show('success', 'Thank you for signing up!');
-        } else {
+        } else if (urlParams.has('error')) {
             $message._show('failure', 'Something went wrong. Please try again.');
         }
-
-        $submit.disabled = false; // Re-enable the submit button
-    })
-    .catch(error => {
-        console.error('Form submission error:', error);
-        $message._show('failure', 'Something went wrong. Please try again.');
-        $submit.disabled = false;
-    });
-});
-
-
     })();
 
 })();
