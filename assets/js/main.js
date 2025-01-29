@@ -26,21 +26,32 @@
 
 	
 	
+		
 			// Hide top bar on scroll.
-	(function() {
+(function() {
     var lastScrollY = window.scrollY;
-    var topBar = document.getElementById('top-bar'); // Ensure your top bar has the ID "top-bar"
+    var topBar = document.getElementById('top-bar');
+    var isHidden = false; // Track visibility state
 
     if (topBar) {
         window.addEventListener('scroll', function() {
-            if (window.scrollY > lastScrollY) {
-                // Scrolling down - hide the top bar
-                topBar.style.top = '-80px'; // Move top bar offscreen
+            var currentScrollY = window.scrollY;
+
+            if (currentScrollY > lastScrollY && currentScrollY > 50) {
+                // Scrolling down and past 50px - hide the top bar
+                if (!isHidden) {
+                    topBar.classList.add('hidden');
+                    isHidden = true;
+                }
             } else {
                 // Scrolling up - show the top bar
-                topBar.style.top = '0'; // Reset to the original position
+                if (isHidden) {
+                    topBar.classList.remove('hidden');
+                    isHidden = false;
+                }
             }
-            lastScrollY = window.scrollY;
+
+            lastScrollY = currentScrollY;
         });
     }
 })();
