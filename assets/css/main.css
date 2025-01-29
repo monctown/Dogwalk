@@ -419,8 +419,7 @@ header h6 + p {
 @media (max-width: 1280px) {
     .container {
          width: 50%;  
-	    padding-top: 5%;
-	
+	    padding-top: 7%;	
     }
 }
 
