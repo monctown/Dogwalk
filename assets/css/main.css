@@ -394,12 +394,8 @@ header h6 + p {
     z-index: 1000;
     display: flex;
     flex-direction: column; /* Stacks nav and strip vertically */
-    transition: transform 0.3s ease-in-out; /* Smooth hiding effect */
+    transition: top 0.3s; /* Smooth transition for hiding */
     background: rgba(255, 255, 255, 0.1); /* Optional: Slight transparency */
-}
-
-#top-bar.hidden {
-    transform: translateY(-100%);
 }
 
 #top-bar nav {
